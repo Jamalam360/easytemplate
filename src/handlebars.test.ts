@@ -64,6 +64,15 @@ describe("ifCond helper", () => {
       "abc",
     );
   });
+
+  it("should support this cursedness", () => {
+    assertEquals(
+    render(`{{#ifCond var var var}}abc{{/ifCond}}`, {
+      var: "==",
+    }),
+    "abc",
+  );
+  })
 });
 
 describe("path", () => {

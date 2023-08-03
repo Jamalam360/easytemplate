@@ -67,12 +67,12 @@ describe("ifCond helper", () => {
 
   it("should support this cursedness", () => {
     assertEquals(
-    render(`{{#ifCond var var var}}abc{{/ifCond}}`, {
-      var: "==",
-    }),
-    "abc",
-  );
-  })
+      render(`{{#ifCond var var var}}abc{{/ifCond}}`, {
+        var: "==",
+      }),
+      "abc",
+    );
+  });
 });
 
 describe("path", () => {

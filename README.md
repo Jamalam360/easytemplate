@@ -14,7 +14,7 @@ deno run --allow-read --allow-write https://raw.githubusercontent.com/Jamalam360
 ```
 
 **A more complex example can be found
-[here](https://github.com/JamCoreModding/multi-loader-mod-template)**
+[here](https://github.com/JamCoreModding/multi-loader-template-mod)**
 
 easytemplate can also be run with the `--debug` flag to debug your templates (or
 more likely easytemplate itself).

@@ -33,9 +33,9 @@ The configuration file is composed of the following fields:
 
 ```json
 {
-	"inputs": "Input[]",
-	"move": "Move[]",
-	"exclude": "string[]"
+  "inputs": "Input[]",
+  "move": "Move[]",
+  "exclude": "string[]"
 }
 ```
 

@@ -1,7 +1,7 @@
 import { Config, loadConfig } from "./config.ts";
 import { getInputs } from "./prompt.ts";
 import { path } from "./deps.ts";
-import { renderPath, render } from "./handlebars.ts";
+import { render, renderPath } from "./handlebars.ts";
 import { readDirRecursive, safeCopy, safeRename } from "./utils.ts";
 
 export const debug = Deno.args.includes("--debug");
@@ -11,8 +11,10 @@ export async function main() {
 
   try {
     config = await loadConfig();
-	} catch (e) {
-		console.log("Failed to load easytemplate.json - is this a template directory?");
+  } catch (e) {
+    console.log(
+      "Failed to load easytemplate.json - is this a template directory?",
+    );
     console.error(e.message);
     return;
   }
@@ -25,10 +27,12 @@ export async function main() {
   const backupPath = "./backup";
   await Deno.mkdir(backupPath, { recursive: true });
 
-  for (let { path: entry, text } of await readDirRecursive(
-    Deno.cwd(),
-    exclude
-  )) {
+  for (
+    let { path: entry, text } of await readDirRecursive(
+      Deno.cwd(),
+      exclude,
+    )
+  ) {
     await safeCopy(entry, path.join(backupPath, entry));
 
     if (debug) {
@@ -40,14 +44,17 @@ export async function main() {
     if (entry.endsWith(".easytemplate")) {
       newPath = entry.slice(0, -".easytemplate".length);
     }
-		
-		newPath = renderPath(newPath, ctx)
+
+    newPath = renderPath(newPath, ctx);
 
     await safeRename(entry, newPath);
     entry = newPath;
 
     if (text) {
-      await Deno.writeTextFile(entry, render(await Deno.readTextFile(entry), ctx));
+      await Deno.writeTextFile(
+        entry,
+        render(await Deno.readTextFile(entry), ctx),
+      );
     }
   }
 
@@ -65,10 +72,10 @@ export async function main() {
   await safeRename(
     "./easytemplate.json",
     path.join(backupPath, "easytemplate.json"),
-	);
-	
+  );
+
   console.log("EasyTemplate finished! A backup has been written to ./backup");
   console.log(
-    "Remember to remove it when you're ready! We have added it to your .gitignore as a precaution."
+    "Remember to remove it when you're ready! We have added it to your .gitignore as a precaution.",
   );
 }

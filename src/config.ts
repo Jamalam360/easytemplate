@@ -20,19 +20,19 @@ type InputCommon = {
 
 type InputType =
   | {
-      type: "options";
-      options: {
-        value: string;
-        label: string;
-      }[];
-    }
+    type: "options";
+    options: {
+      value: string;
+      label: string;
+    }[];
+  }
   | {
-      type: "string";
-      regex?: string;
-    }
+    type: "string";
+    regex?: string;
+  }
   | {
-      type: "boolean";
-    };
+    type: "boolean";
+  };
 
 export async function loadConfig(): Promise<Config> {
   const configPath = path.join(Deno.cwd(), "easytemplate.json");

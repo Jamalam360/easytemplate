@@ -16,7 +16,8 @@ deno run --allow-read --allow-write https://raw.githubusercontent.com/Jamalam360
 **A more complex example can be found
 [here](https://github.com/JamCoreModding/multi-loader-mod-template)**
 
-easytemplate can also be run with the `--debug` flag to debug your templates (or more likely easytemplate itself).
+easytemplate can also be run with the `--debug` flag to debug your templates (or
+more likely easytemplate itself).
 
 ## Documentation
 
@@ -78,7 +79,7 @@ template. All inputs share 4 common fields:
   "type": "string",
   "id": "some_id",
   "label": "Enter ...:",
-	"regex": "optionally add a validating regex"
+  "regex": "optionally add a validating regex"
 }
 ```
 
@@ -94,20 +95,23 @@ template. All inputs share 4 common fields:
 
 #### `Move`
 
-Move operations are used to rename/move files after the template has been filled out (all Handlebars expressions have been expanded).
+Move operations are used to rename/move files after the template has been filled
+out (all Handlebars expressions have been expanded).
 
 ```json
 {
-	"from": "from_path",
-	"to": "to_path"
+  "from": "from_path",
+  "to": "to_path"
 }
 ```
 
 #### Exclude
 
-Excludes are used to exclude some files from being processed. Exclude paths are extended, globstar-enabled globs.
+Excludes are used to exclude some files from being processed. Exclude paths are
+extended, globstar-enabled globs.
 
-easytemplate makes a best guess at automatically excluding non-text files from processing.
+easytemplate makes a best guess at automatically excluding non-text files from
+processing.
 
 ### Templating
 
@@ -182,6 +186,10 @@ string one was equal to string two!
 
 ### `.easytemplate`
 
-When using easytemplate myself, I found some IDEs that I had configured to format code automatically would create horrible formatting due to the random Handlebars syntax in what the IDE thought was a normal code file.
+When using easytemplate myself, I found some IDEs that I had configured to
+format code automatically would create horrible formatting due to the random
+Handlebars syntax in what the IDE thought was a normal code file.
 
-Due to this issue, I made easytemplate remove the `.easytemplate` suffix from any files that have it. Other than that, no other changes are made to these files outside of the usual processing.
+Due to this issue, I made easytemplate remove the `.easytemplate` suffix from
+any files that have it. Other than that, no other changes are made to these
+files outside of the usual processing.

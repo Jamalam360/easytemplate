@@ -7,12 +7,12 @@ import inq from "npm:inquirer";
 import type { Question } from "npm:@types/inquirer";
 
 export {
-  Handlebars,
-  path,
-  isProbablyBinaryPath,
-  inq,
-  describe,
-  it,
   assertEquals,
+  describe,
+  Handlebars,
+  inq,
+  isProbablyBinaryPath,
+  it,
+  path,
 };
 export type { Question };

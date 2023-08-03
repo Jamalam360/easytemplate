@@ -1,9 +1,9 @@
-import { path, isProbablyBinaryPath } from "./deps.ts";
+import { isProbablyBinaryPath, path } from "./deps.ts";
 import { debug } from "./main.ts";
 
 export async function readDirRecursive(
   dir: string,
-  exclude: RegExp[]
+  exclude: RegExp[],
 ): Promise<{ path: string; text: boolean }[]> {
   const entries = [];
   for await (const entry of Deno.readDir(dir)) {
@@ -19,7 +19,7 @@ export async function readDirRecursive(
       if (isProbablyBinaryPath(entryPath)) {
         if (debug) {
           console.log(
-            `Skipping ${entryPath} because it doesn't look like a text file`
+            `Skipping ${entryPath} because it doesn't look like a text file`,
           );
         }
 
@@ -46,8 +46,8 @@ export async function safeCopy(from: string, to: string) {
 export async function safeRename(from: string, to: string) {
   await Deno.mkdir(path.dirname(to), { recursive: true });
   await Deno.rename(from, to);
-	const dir = path.dirname(from);
-	
+  const dir = path.dirname(from);
+
   for await (const _ of Deno.readDir(dir)) {
     return;
   }
@@ -57,7 +57,7 @@ export async function safeRename(from: string, to: string) {
 
 export function evaluateExpression(
   ctx: { [id: string]: string },
-  expr: string
+  expr: string,
 ): boolean {
   const keys = Object.keys(ctx);
   const values = Object.values(ctx);

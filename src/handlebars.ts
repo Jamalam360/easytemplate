@@ -45,10 +45,10 @@ Handlebars.registerHelper("ifCond", function (v1, operator, v2, options) {
 });
 
 export function renderPath(path: string, context: unknown): string {
-	path = path.replaceAll("%%", "/");
-	return Handlebars.compile(path)(context);
+  path = path.replaceAll("%%", "/");
+  return Handlebars.compile(path)(context);
 }
 
 export function render(content: string, context: unknown): string {
-	return Handlebars.compile(content)(context);
+  return Handlebars.compile(content)(context);
 }

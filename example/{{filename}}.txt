@@ -1,0 +1,9 @@
+option: {{ options }}
+string: {{ string }}
+boolean: {{ boolean }}
+
+{{#if boolean}}
+Boolean was true!
+{{else}}
+Boolean was false!
+{{/if}}

@@ -1,0 +1,51 @@
+{
+	"inputs": [
+		{
+			"type": "string",
+			"id": "filename",
+			"label": "Enter File Name:",
+			"default": "test.txt",
+			"regex": "^[a-zA-Z]+\\.txt$"
+		},
+		{
+			"type": "options",
+			"id": "options",
+			"label": "This is an option menu:",
+			"options": [
+				{
+					"label": "Option 1",
+					"value": "option1"
+				},
+				{
+					"label": "Option 2",
+					"value": "option2"
+				},
+				{
+					"label": "Option 3",
+					"value": "option3"
+				}
+			],
+			"default": "option1"
+		},
+		{
+			"type": "string",
+			"id": "only_if",
+			"label": "This question will only be asked if you said option 2. The only_if property is a string that is evaluated as javascript. All answers up to this point are available.",
+			"only_if": "options === 'option2'"
+		},
+		{
+			"type": "boolean",
+			"id": "boolean",
+			"label": "Booleans can be used as well:"
+		}
+	],
+	"move": [
+		{
+			"from": "test.js",
+			"to": "index.js"
+		}
+	],
+	"exclude": [
+		"*.js"
+	]
+}

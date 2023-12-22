@@ -1,7 +1,7 @@
 # easytemplate
 
 easytemplate is a simple system for initializing new projects. It only requires
-the template and a short configuration file.
+a project skeleton and a short configuration file.
 
 ## Example
 
@@ -24,7 +24,7 @@ more likely easytemplate itself).
 ### Structure
 
 An easytemplate template is simply composed of the relevant files along with an
-`easytemplate.json` file, which is automatically removed at the end of
+`easytemplate.json` file, which is removed at the end of
 templating.
 
 ### `easytemplate.json`

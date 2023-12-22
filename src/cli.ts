@@ -24,7 +24,12 @@ function parseArgs(args: string[]): CliArgs {
       disableInteractiveMode = true;
     } else if (arg === "--input") {
       const input = args[++i];
-      const [id, value] = input.split("=");
+      let [id, value] = input.split("=");
+
+      if (value.startsWith('"') && value.endsWith('"')) {
+        value = value.slice(1, -1);
+      }
+
       inputs[id] = value;
     } else {
       throw new Error(`Unknown argument ${arg}`);

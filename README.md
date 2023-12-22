@@ -193,3 +193,11 @@ Handlebars syntax in what the IDE thought was a normal code file.
 Due to this issue, I made easytemplate remove the `.easytemplate` suffix from
 any files that have it. Other than that, no other changes are made to these
 files outside of the usual processing.
+
+### The CLI
+
+Options:
+
+- `--debug`: enable debug logging; mainly just helpful for me
+- `--disable-interactive-mode`: don't prompt for inputs, useful for CI environments. Must use along with `--input`.
+- `--input`: pass a value for a input, in the form `id=value`, e.g. `--input my_string="a string here"`. Quotes are optional.

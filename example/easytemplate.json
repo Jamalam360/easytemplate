@@ -4,8 +4,8 @@
       "type": "string",
       "id": "filename",
       "label": "Enter File Name:",
-      "default": "test.txt",
-      "regex": "^[a-zA-Z]+\\.txt$"
+      "default": "test",
+      "regex": "^[a-zA-Z]+$"
     },
     {
       "type": "options",

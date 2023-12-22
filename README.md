@@ -148,12 +148,12 @@ Replaces all occurrences of `find` in the block with `replace`
 
 ```
 {{ #replace 'find' 'replace' }}
-I am finding this repository very cool!
+I am finding this string, very cool!
 {{ /replace }}
 
 ###
 
-I am replaceing this repository very cool!
+I am replacing this string, very cool!
 ```
 
 ##### `ifCond`

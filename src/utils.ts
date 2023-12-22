@@ -1,5 +1,5 @@
 import { isProbablyBinaryPath, path } from "./deps.ts";
-import { debug } from "./main.ts";
+import { args } from "./cli.ts";
 
 export async function readDirRecursive(
   dir: string,
@@ -17,7 +17,7 @@ export async function readDirRecursive(
       entries.push(...(await readDirRecursive(entryPath, exclude)));
     } else {
       if (isProbablyBinaryPath(entryPath)) {
-        if (debug) {
+        if (args.debug) {
           console.log(
             `Skipping ${entryPath} because it doesn't look like a text file`,
           );
@@ -56,7 +56,7 @@ export async function safeRename(from: string, to: string) {
 }
 
 export function evaluateExpression(
-  ctx: { [id: string]: string },
+  ctx: { [id: string]: string | boolean },
   expr: string,
 ): boolean {
   const keys = Object.keys(ctx);

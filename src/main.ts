@@ -1,10 +1,8 @@
 import { Config, loadConfig } from "./config.ts";
-import { getInputs } from "./prompt.ts";
+import { getInputs, args } from "./cli.ts";
 import { path } from "./deps.ts";
 import { render, renderPath } from "./handlebars.ts";
 import { readDirRecursive, safeCopy, safeRename } from "./utils.ts";
-
-export const debug = Deno.args.includes("--debug");
 
 export async function main() {
   let config: Config;
@@ -35,7 +33,7 @@ export async function main() {
   ) {
     await safeCopy(entry, path.join(backupPath, entry));
 
-    if (debug) {
+    if (args.debug) {
       console.log(`Processing ${entry}`);
     }
 
@@ -78,4 +76,5 @@ export async function main() {
   console.log(
     "Remember to remove it when you're ready! We have added it to your .gitignore as a precaution.",
   );
+  Deno.exit(0);
 }

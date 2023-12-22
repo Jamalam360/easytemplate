@@ -1,5 +1,5 @@
 option: {{ options }}
-string: {{ string }}
+string: {{ filename }}
 boolean: {{ boolean }}
 
 {{#if boolean}}

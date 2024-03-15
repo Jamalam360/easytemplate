@@ -29,6 +29,15 @@ export async function main() {
       console.log(`Processing ${entry}`);
     }
 
+    if (ignore.some((g) => g.test(entry))) {
+      if (args.debug) {
+        console.log(`Deleting ${entry}`);
+      }
+
+      await Deno.remove(entry);
+      continue;
+    }
+
     let newPath = entry;
 
     if (entry.endsWith(".easytemplate")) {
@@ -39,15 +48,6 @@ export async function main() {
 
     await safeRename(entry, newPath);
     entry = newPath;
-
-    if (ignore.some((g) => g.test(entry))) {
-      if (args.debug) {
-        console.log(`Deleting ${entry}`);
-      }
-
-      await Deno.remove(entry);
-      continue;
-    }
 
     if (text) {
       await Deno.writeTextFile(entry, render(await Deno.readTextFile(entry), ctx));

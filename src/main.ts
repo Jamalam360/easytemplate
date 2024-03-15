@@ -40,7 +40,7 @@ export async function main() {
     await safeRename(entry, newPath);
     entry = newPath;
 
-    if (ignore.findIndex((g) => entry.match(g) != null) !== -1) {
+    if (ignore.some((g) => g.test(entry))) {
       if (args.debug) {
         console.log(`Deleting ${entry}`);
       }

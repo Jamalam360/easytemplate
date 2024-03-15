@@ -37,6 +37,14 @@ export async function main() {
       console.log(`Processing ${entry}`);
     }
 
+    if (exclude.findIndex((g) => entry.match(g) != null) !== -1) {
+      if (args.debug) {
+        console.log(`Skipping ${entry}`);
+      }
+
+      continue;
+    }
+
     let newPath = entry;
 
     if (entry.endsWith(".easytemplate")) {

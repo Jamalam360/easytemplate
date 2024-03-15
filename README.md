@@ -107,12 +107,16 @@ out (all Handlebars expressions have been expanded).
 
 #### Exclude
 
-Excludes are used to exclude some files from being processed. Exclude paths are
-extended, globstar-enabled globs. Paths in this array will not be included in
-the initialized template.
+Excludes are used to exclude some files from being templated. Exclude paths are
+extended, globstar-enabled globs.
 
 easytemplate makes a best guess at automatically excluding non-text files from
 processing.
+
+#### Ignore
+
+Ignore paths are used to exclude files from the final initialized template. Ignore paths are
+extended, globstar-enabled globs.
 
 ### Templating
 

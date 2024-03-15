@@ -7,6 +7,7 @@ export type Config = {
     to: string;
   }[];
   exclude?: string[];
+  ignore?: string[];
 };
 
 export type Input = InputCommon & InputType;

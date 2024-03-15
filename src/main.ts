@@ -10,39 +10,23 @@ export async function main() {
   try {
     config = await loadConfig();
   } catch (e) {
-    console.log(
-      "Failed to load easytemplate.json - is this a template directory?",
-    );
+    console.log("Failed to load easytemplate.json - is this a template directory?");
     console.error(e.message);
     return;
   }
 
   const ctx = await getInputs(config);
-  const exclude = (config.exclude || []).map((g) =>
-    path.globToRegExp(g, { extended: true, globstar: true })
-  );
+  const exclude = (config.exclude || []).map((g) => path.globToRegExp(g, { extended: true, globstar: true }));
+  const ignore = (config.ignore || []).map((g) => path.globToRegExp(g, { extended: true, globstar: true }));
   exclude.push(/easytemplate\.json/);
   const backupPath = "./backup";
   await Deno.mkdir(backupPath, { recursive: true });
 
-  for (
-    let { path: entry, text } of await readDirRecursive(
-      Deno.cwd(),
-      exclude,
-    )
-  ) {
+  for (let { path: entry, text } of await readDirRecursive(Deno.cwd(), exclude)) {
     await safeCopy(entry, path.join(backupPath, entry));
 
     if (args.debug) {
       console.log(`Processing ${entry}`);
-    }
-
-    if (exclude.findIndex((g) => entry.match(g) != null) !== -1) {
-      if (args.debug) {
-        console.log(`Skipping ${entry}`);
-      }
-
-      continue;
     }
 
     let newPath = entry;
@@ -56,11 +40,17 @@ export async function main() {
     await safeRename(entry, newPath);
     entry = newPath;
 
+    if (ignore.findIndex((g) => entry.match(g) != null) !== -1) {
+      if (args.debug) {
+        console.log(`Deleting ${entry}`);
+      }
+
+      await Deno.remove(entry);
+      continue;
+    }
+
     if (text) {
-      await Deno.writeTextFile(
-        entry,
-        render(await Deno.readTextFile(entry), ctx),
-      );
+      await Deno.writeTextFile(entry, render(await Deno.readTextFile(entry), ctx));
     }
   }
 
@@ -75,14 +65,9 @@ export async function main() {
     // ignored
   }
 
-  await safeRename(
-    "./easytemplate.json",
-    path.join(backupPath, "easytemplate.json"),
-  );
+  await safeRename("./easytemplate.json", path.join(backupPath, "easytemplate.json"));
 
   console.log("EasyTemplate finished! A backup has been written to ./backup");
-  console.log(
-    "Remember to remove it when you're ready! We have added it to your .gitignore as a precaution.",
-  );
+  console.log("Remember to remove it when you're ready! We have added it to your .gitignore as a precaution.");
   Deno.exit(0);
 }

@@ -45,7 +45,6 @@
       "to": "index.js"
     }
   ],
-  "exclude": [
-    "*.js"
-  ]
+  "exclude": ["*.js"],
+  "ignore": ["dontcopy.txt"]
 }

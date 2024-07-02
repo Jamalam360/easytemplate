@@ -3,7 +3,7 @@ import * as path from "https://deno.land/std@0.197.0/path/mod.ts";
 import { assertEquals } from "https://deno.land/std@0.197.0/assert/mod.ts";
 import { describe, it } from "https://deno.land/std@0.197.0/testing/bdd.ts";
 import isProbablyBinaryPath from "npm:is-binary-path";
-import inq from "npm:inquirer";
+import inq from "npm:inquirer@9.2.10";
 import type { Question } from "npm:@types/inquirer";
 
 export {
